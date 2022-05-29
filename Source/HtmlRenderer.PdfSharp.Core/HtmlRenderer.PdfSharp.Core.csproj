@@ -15,10 +15,4 @@
     <ProjectReference Include="..\HtmlRenderer.Core\HtmlRenderer.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="in.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
