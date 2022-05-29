@@ -12,6 +12,7 @@
 
 using System;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using TheArtOfDev.HtmlRenderer.Adapters;
@@ -148,10 +149,12 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                 {
                     var apiUri = new Uri(string.Format("http://gdata.youtube.com/feeds/api/videos/{0}?v=2&alt=json", uri.Segments[2]));
 
-                    var client = new WebClient();
-                    client.Encoding = Encoding.UTF8;
-                    client.DownloadStringCompleted += OnDownloadYoutubeApiCompleted;
-                    client.DownloadStringAsync(apiUri);
+                    using (var client = new WebClient())
+                    {
+                        client.Encoding = Encoding.UTF8;
+                        client.DownloadStringCompleted += OnDownloadYoutubeApiCompleted;
+                        client.DownloadStringAsync(apiUri);
+                    }
                 }
                 catch (Exception ex)
                 {
